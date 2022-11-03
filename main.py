@@ -35,8 +35,8 @@ def calculate_x_y(x, y, operator):
 
     
 
-@app.post("/calculate", status_code= status.HTTP_202_ACCEPTED, response_model=ResponseSchema)
-def calculate(data: RequestSchema):
+@app.post("/calculate", status_code= status.HTTP_202_ACCEPTED)
+def calculate(data):
     x = data.x
     y = data.y
     operator = data.operation_type
