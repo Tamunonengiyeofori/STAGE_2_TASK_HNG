@@ -14,9 +14,9 @@ API_KEY = os.getenv("OPEN_API_SECRET_KEY")
 
 
 class OperatorChoice(str, Enum):
-    addition = "ADDITION"
-    subtraction = "SUBTRACTION"
-    multiplication = "MULTIPLICATION"
+    addition = "addition"
+    subtraction = "subtraction"
+    multiplication = "multiplication"
     
 class RequestSchema(BaseModel):
     operation_type: str
@@ -48,7 +48,7 @@ def calculate_x_y(x, y, operator):
 def calculate(data: RequestSchema):
     x = data.x
     y = data.y
-    operator = data.operation_type.upper()
+    operator = data.operation_type
     result = calculate_x_y(x ,y, operator)
     return {"slackUsername" : "Nengi_Tammy",
             "result": result,
