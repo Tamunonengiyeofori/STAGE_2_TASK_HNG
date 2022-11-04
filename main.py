@@ -1,6 +1,6 @@
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Union
 from enum import Enum
 from dotenv import load_dotenv
 import os
@@ -19,14 +19,14 @@ class OperatorChoice(str, Enum):
     multiplication = "MULTIPLICATION"
     
 class RequestSchema(BaseModel):
-    operation_type: OperatorChoice
+    operation_type: Union[OperatorChoice , str]
     x: int
     y: int
     
 class ResponseSchema(BaseModel):
     slackUsername : Optional[str] = "Nengi_Tammy"
     result: int
-    operation_type: OperatorChoice 
+    operation_type: Union[OperatorChoice , str] 
 
 app = FastAPI()
 
@@ -48,7 +48,7 @@ def calculate_x_y(x, y, operator):
 def calculate(data: RequestSchema):
     x = data.x
     y = data.y
-    operator = data.operation_type
+    operator = data.operation_type.upper()
     result = calculate_x_y(x ,y, operator)
     return {"slackUsername" : "Nengi_Tammy",
             "result": result,
