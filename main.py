@@ -19,14 +19,14 @@ class OperatorChoice(str, Enum):
     multiplication = "MULTIPLICATION"
     
 class RequestSchema(BaseModel):
-    operation_type: str
+    operation_type: OperatorChoice
     x: int
     y: int
     
 class ResponseSchema(BaseModel):
     slackUsername : Optional[str] = "Nengi_Tammy"
     result: int
-    operation_type: str
+    operation_type: OperatorChoice
 
 app = FastAPI()
 
