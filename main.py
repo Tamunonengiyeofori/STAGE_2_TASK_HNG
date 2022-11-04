@@ -19,7 +19,7 @@ class OperatorChoice(str, Enum):
     multiplication = "MULTIPLICATION"
     
 class RequestSchema(BaseModel):
-    operation_type: Union[OperatorChoice , str]
+    operation_type: str
     x: int
     y: int
     
