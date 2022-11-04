@@ -2,6 +2,15 @@ from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from enum import Enum
+from dotenv import load_dotenv
+import os
+import openai
+
+# Load all the environment variables
+load_dotenv()
+
+API_KEY = os.getenv("OPEN_API_SECRET_KEY")
+
 
 
 class OperatorChoice(str, Enum):
@@ -44,4 +53,5 @@ def calculate(data: RequestSchema):
     return {"slackUsername" : "Nengi_Tammy",
             "result": result,
             "operation_type" : operator}
+
 
