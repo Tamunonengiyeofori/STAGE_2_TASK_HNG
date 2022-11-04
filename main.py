@@ -19,14 +19,14 @@ class OperatorChoice(str, Enum):
     multiplication = "multiplication"
     
 class RequestSchema(BaseModel):
-    operation_type: str
+    operation_type: Union[OperatorChoice , str]
     x: int
     y: int
     
 class ResponseSchema(BaseModel):
     slackUsername : Optional[str] = "Nengi_Tammy"
     result: int
-    operation_type: str
+    operation_type: Union[OperatorChoice , str]
 
 app = FastAPI()
 
@@ -48,7 +48,7 @@ def calculate_x_y(x, y, operator):
 def calculate(data: RequestSchema):
     x = data.x
     y = data.y
-    operator = data.operation_type
+    operator = data.operation_type.lower()
     result = calculate_x_y(x ,y, operator)
     return {"slackUsername" : "Nengi_Tammy",
             "result": result,
