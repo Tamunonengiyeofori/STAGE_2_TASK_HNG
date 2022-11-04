@@ -26,7 +26,7 @@ class RequestSchema(BaseModel):
 class ResponseSchema(BaseModel):
     slackUsername : Optional[str] = "Nengi_Tammy"
     result: int
-    operation_type: Union[OperatorChoice , str] 
+    operation_type: OperatorChoice
 
 app = FastAPI()
 
